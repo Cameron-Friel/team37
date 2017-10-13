@@ -174,67 +174,6 @@ public class Game {
             }
         }
 
- /*       while (diamonds >= 2){
-            for(int i = 0; i < 4; i++){
-                //temp.add(getTopCard(i));
-                if (temp.get(i).suit == diamonds_compare.suit){
-                    for(int k = i + 1; k < 4; k++) {
-                        //temp.add(getTopCard(i));
-                        if (temp.get(k).suit == diamonds_compare.suit) {
-                            if (temp.get(i).value < temp.get(k).value) {
-                                removeCardFromCol(i);
-                                diamonds--;
-                            } else if(temp.get(i).value > temp.get(k).value){
-                                removeCardFromCol(k);
-                                diamonds--;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        while (spades >= 2){
-            for(int i = 0; i < 4; i++){
-                //temp.add(getTopCard(i));
-                if (temp.get(i).suit == spades_compare.suit){
-                    for(int k = i + 1; k < 4; k++) {
-                        //temp.add(getTopCard(i));
-                        if (temp.get(k).suit == spades_compare.suit) {
-                            if (temp.get(i).value < temp.get(k).value) {
-                                removeCardFromCol(i);
-                                spades--;
-                            } else if(temp.get(i).value > temp.get(k).value){
-                                removeCardFromCol(k);
-                                spades--;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        while (clubs >= 2){
-            for(int i = 0; i < 4; i++){
-                //temp.add(getTopCard(i));
-                if (temp.get(i).suit == clubs_compare.suit){
-                    for(int k = i + 1; k < 4; k++) {
-                        //temp.add(getTopCard(i));
-                        if (temp.get(k).suit == clubs_compare.suit) {
-                            if (temp.get(i).value < temp.get(k).value) {
-                                removeCardFromCol(i);
-                                clubs--;
-                            } else if(temp.get(i).value > temp.get(k).value){
-                                removeCardFromCol(k);
-                                clubs--;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-*/
-        //removeCardFromCol(columnNumber);
     }
 
     private boolean columnHasCards(int columnNumber) {
