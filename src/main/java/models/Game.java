@@ -63,6 +63,7 @@ public class Game {
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
+        // Initialize variables
         int hearts, diamonds, spades, clubs;
         hearts = diamonds = spades = clubs = 0;
         Card hearts_compare = new Card(1,Suit.Hearts);
@@ -71,27 +72,168 @@ public class Game {
         Card clubs_compare = new Card(1,Suit.Clubs);
         java.util.List<Card> temp = new ArrayList<>(4);
 
+        // Count the instances of each suit at the top of the columns
         for(int i = 0; i < 4; i++){
             temp.add(getTopCard(i));
-            //System.out.println(temp.get(i).suit);
             if (temp.get(i).suit == hearts_compare.suit) {
                 hearts++;
-                System.out.println(hearts);
             }else if (temp.get(i).suit == diamonds_compare.suit){
                 diamonds++;
-                System.out.println(diamonds);
             }else if (temp.get(i).suit == spades_compare.suit){
                 spades++;
-                System.out.println(spades);
             }else if (temp.get(i).suit == clubs_compare.suit){
                 clubs++;
-                System.out.println(clubs);
             }
         }
 
+        // Loop through the respective suit and remove the lower value
+        // Return prevents elimination of more than 1 value on a single click
+        while (hearts >= 2){
+            for(int i = 0; i < 4; i++){
+                if (temp.get(i).suit == hearts_compare.suit){
+                    for(int k = i + 1; k < 4; k++) {
+                        if (temp.get(k).suit == hearts_compare.suit) {
+                            if (temp.get(i).value < temp.get(k).value && i == columnNumber) {
+                                removeCardFromCol(i);
+                                hearts--;
+                                return;
+                            } else if(temp.get(i).value > temp.get(k).value && k == columnNumber){
+                                removeCardFromCol(k);
+                                hearts--;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
+        // Loop through the respective suit and remove the lower value
+        // Return prevents elimination of more than 1 value on a single click
+        while (diamonds >= 2){
+            for(int i = 0; i < 4; i++){
+                if (temp.get(i).suit == diamonds_compare.suit){
+                    for(int k = i + 1; k < 4; k++) {
+                        if (temp.get(k).suit == diamonds_compare.suit) {
+                            if (temp.get(i).value < temp.get(k).value && i == columnNumber) {
+                                removeCardFromCol(i);
+                                diamonds--;
+                                return;
+                            } else if(temp.get(i).value > temp.get(k).value && k == columnNumber){
+                                removeCardFromCol(k);
+                                diamonds--;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
+        // Loop through the respective suit and remove the lower value
+        // Return prevents elimination of more than 1 value on a single click
+        while (spades >= 2){
+            for(int i = 0; i < 4; i++){
+                if (temp.get(i).suit == spades_compare.suit){
+                    for(int k = i + 1; k < 4; k++) {
+                        if (temp.get(k).suit == spades_compare.suit) {
+                            if (temp.get(i).value < temp.get(k).value && i == columnNumber) {
+                                removeCardFromCol(i);
+                                spades--;
+                                return;
+                            } else if(temp.get(i).value > temp.get(k).value && k == columnNumber){
+                                removeCardFromCol(k);
+                                spades--;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
+        // Loop through the respective suit and remove the lower value
+        // Return prevents elimination of more than 1 value on a single click
+        while (clubs >= 2){
+            for(int i = 0; i < 4; i++){
+                if (temp.get(i).suit == clubs_compare.suit){
+                    for(int k = i + 1; k < 4; k++) {
+                        if (temp.get(k).suit == clubs_compare.suit) {
+                            if (temp.get(i).value < temp.get(k).value && i == columnNumber) {
+                                removeCardFromCol(i);
+                                clubs--;
+                                return;
+                            } else if(temp.get(i).value > temp.get(k).value && k == columnNumber){
+                                removeCardFromCol(k);
+                                clubs--;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+ /*       while (diamonds >= 2){
+            for(int i = 0; i < 4; i++){
+                //temp.add(getTopCard(i));
+                if (temp.get(i).suit == diamonds_compare.suit){
+                    for(int k = i + 1; k < 4; k++) {
+                        //temp.add(getTopCard(i));
+                        if (temp.get(k).suit == diamonds_compare.suit) {
+                            if (temp.get(i).value < temp.get(k).value) {
+                                removeCardFromCol(i);
+                                diamonds--;
+                            } else if(temp.get(i).value > temp.get(k).value){
+                                removeCardFromCol(k);
+                                diamonds--;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        while (spades >= 2){
+            for(int i = 0; i < 4; i++){
+                //temp.add(getTopCard(i));
+                if (temp.get(i).suit == spades_compare.suit){
+                    for(int k = i + 1; k < 4; k++) {
+                        //temp.add(getTopCard(i));
+                        if (temp.get(k).suit == spades_compare.suit) {
+                            if (temp.get(i).value < temp.get(k).value) {
+                                removeCardFromCol(i);
+                                spades--;
+                            } else if(temp.get(i).value > temp.get(k).value){
+                                removeCardFromCol(k);
+                                spades--;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        while (clubs >= 2){
+            for(int i = 0; i < 4; i++){
+                //temp.add(getTopCard(i));
+                if (temp.get(i).suit == clubs_compare.suit){
+                    for(int k = i + 1; k < 4; k++) {
+                        //temp.add(getTopCard(i));
+                        if (temp.get(k).suit == clubs_compare.suit) {
+                            if (temp.get(i).value < temp.get(k).value) {
+                                removeCardFromCol(i);
+                                clubs--;
+                            } else if(temp.get(i).value > temp.get(k).value){
+                                removeCardFromCol(k);
+                                clubs--;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+*/
         //removeCardFromCol(columnNumber);
     }
 
