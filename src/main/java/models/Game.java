@@ -35,6 +35,16 @@ public class Game {
 
     public void shuffle() {
         // shuffles the deck so that it is random
+        Random rand = new Random(); //initialize random variable
+
+        for (int i = 0; i < 100; i++) //iterate through 100 times for card shifting
+        {
+                int firstIndex = 1 + rand.nextInt(51); //first position to change
+                int secondIndex = 1 + rand.nextInt(51); //second position to change
+        
+                //swap positions of the two randomly chosen indexes
+                Collections.swap(deck, firstIndex, secondIndex);
+        }
     }
 
     public void dealFour() {
