@@ -53,6 +53,36 @@ public class Game {
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
+        int hearts, diamonds, spades, clubs;
+        hearts = diamonds = spades = clubs = 0;
+        Card hearts_compare = new Card(1,Suit.Hearts);
+        Card diamonds_compare = new Card(1,Suit.Diamonds);
+        Card spades_compare = new Card(1,Suit.Spades);
+        Card clubs_compare = new Card(1,Suit.Clubs);
+        java.util.List<Card> temp = new ArrayList<>(4);
+
+        for(int i = 0; i < 4; i++){
+            temp.add(getTopCard(i));
+            //System.out.println(temp.get(i).suit);
+            if (temp.get(i).suit == hearts_compare.suit) {
+                hearts++;
+                System.out.println(hearts);
+            }else if (temp.get(i).suit == diamonds_compare.suit){
+                diamonds++;
+                System.out.println(diamonds);
+            }else if (temp.get(i).suit == spades_compare.suit){
+                spades++;
+                System.out.println(spades);
+            }else if (temp.get(i).suit == clubs_compare.suit){
+                clubs++;
+                System.out.println(clubs);
+            }
+        }
+
+
+
+
+        //removeCardFromCol(columnNumber);
     }
 
     private boolean columnHasCards(int columnNumber) {
