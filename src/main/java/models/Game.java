@@ -16,6 +16,12 @@ public class Game {
 
     public Game(){
         // initialize a new game such that each column can store cards
+        int counter=0;
+        while(counter<4){
+            //add 14 slots in each column for cards
+            cols.add(new ArrayList<Card>(14));
+            counter++;
+        }
     }
 
     public void buildDeck() {
@@ -33,6 +39,16 @@ public class Game {
 
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
+        int counter=0;
+        while(counter<4){
+            //initialize size of deck
+            int deckSize=this.deck.size()-1;
+            //add top card to column
+            addCardToCol(counter, this.deck.get(deckSize));
+            //remove top card from deck
+            this.deck.remove(deckSize);
+            counter++;
+        }
     }
 
     public void remove(int columnNumber) {
