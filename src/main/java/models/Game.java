@@ -187,11 +187,12 @@ public class Game {
 
 
     public void move(int columnFrom, int columnTo) {
-
+        
+        // Get which card to move and store it
         Card cardToMove = getTopCard(columnFrom);
-
+        //remove the card from the original column
         removeCardFromCol(columnFrom);
-
+        // add card to new column
         addCardToCol(columnTo, cardToMove);
 
         // remove the top card from the columnFrom column, add it to the columnTo column
