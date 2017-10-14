@@ -187,12 +187,7 @@ public class Game {
 
 
     public void move(int columnFrom, int columnTo) {
-
-        Card cardToMove = getTopCard(columnFrom);
-
-        removeCardFromCol(columnFrom);
-
-        addCardToCol(columnTo, cardToMove);
+	//git commit/push test
 
         // remove the top card from the columnFrom column, add it to the columnTo column
     }
