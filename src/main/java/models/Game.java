@@ -5,23 +5,23 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
- * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
+ * Assignment 1: Students must implement dealFour(), remove(), move(), and columnHasCards() methods
+ *
+ * The customDeal() method is not present in the Assignment1_Student version since tests (and the test dir) are removed
+ * to prevent confusion regarding testing and the use of unit tests; testing is covered more thoroughly in CS362.
  */
 public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
+    public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
 
     public Game(){
-        // initialize a new game such that each column can store cards
-        int counter=0;
-        while(counter<4){
-            //add 14 slots in each column for cards
-            cols.add(new ArrayList<Card>(14));
-            counter++;
-        }
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
     }
 
     public void buildDeck() {
@@ -34,150 +34,55 @@ public class Game {
     }
 
     public void shuffle() {
-        // shuffles the deck so that it is random
-        Random rand = new Random(); //initialize random variable
-
-        for (int i = 0; i < 100; i++) //iterate through 100 times for card shifting
-        {
-                int firstIndex = 1 + rand.nextInt(51); //first position to change
-                int secondIndex = 1 + rand.nextInt(51); //second position to change
-        
-                //swap positions of the two randomly chosen indexes
-                Collections.swap(deck, firstIndex, secondIndex);
-        }
+        long seed = System.nanoTime();
+        Collections.shuffle(deck, new Random(seed));
     }
 
     public void dealFour() {
-        // remove the top card from the deck and add it to a column; repeat for each of the four columns
-        int counter=0;
-        while(counter<4){
-            //initialize size of deck
-            int deckSize=this.deck.size()-1;
-            //add top card to column
-            addCardToCol(counter, this.deck.get(deckSize));
-            //remove top card from deck
-            this.deck.remove(deckSize);
-            counter++;
+        for(int i = 0; i < 4; i++){
+            cols.get(i).add(deck.get(deck.size()-1));
+            deck.remove(deck.size()-1);
         }
+    }
+
+    //customDeal to setup game for testing purposes
+    public void customDeal(int c1, int c2, int c3, int c4) {
+        cols.get(0).add(deck.get(c1));
+        deck.remove(c1);
+        cols.get(1).add(deck.get(c2));
+        deck.remove(c2);
+        cols.get(2).add(deck.get(c3));
+        deck.remove(c3);
+        cols.get(3).add(deck.get(c4));
+        deck.remove(c4);
     }
 
     public void remove(int columnNumber) {
-        // remove the top card from the indicated column
-        // Initialize variables
-        int hearts, diamonds, spades, clubs;
-        hearts = diamonds = spades = clubs = 0;
-        Card hearts_compare = new Card(1,Suit.Hearts);
-        Card diamonds_compare = new Card(1,Suit.Diamonds);
-        Card spades_compare = new Card(1,Suit.Spades);
-        Card clubs_compare = new Card(1,Suit.Clubs);
-        java.util.List<Card> temp = new ArrayList<>(4);
-
-        // Count the instances of each suit at the top of the columns
-        for(int i = 0; i < 4; i++){
-            temp.add(getTopCard(i));
-            if (temp.get(i).suit == hearts_compare.suit) {
-                hearts++;
-            }else if (temp.get(i).suit == diamonds_compare.suit){
-                diamonds++;
-            }else if (temp.get(i).suit == spades_compare.suit){
-                spades++;
-            }else if (temp.get(i).suit == clubs_compare.suit){
-                clubs++;
-            }
-        }
-
-        // Loop through the respective suit and remove the lower value
-        // Return prevents elimination of more than 1 value on a single click
-        while (hearts >= 2){
-            for(int i = 0; i < 4; i++){
-                if (temp.get(i).suit == hearts_compare.suit){
-                    for(int k = i + 1; k < 4; k++) {
-                        if (temp.get(k).suit == hearts_compare.suit) {
-                            if (temp.get(i).value < temp.get(k).value && i == columnNumber) {
-                                removeCardFromCol(i);
-                                hearts--;
-                                return;
-                            } else if(temp.get(i).value > temp.get(k).value && k == columnNumber){
-                                removeCardFromCol(k);
-                                hearts--;
-                                return;
+        if(columnHasCards(columnNumber)) {
+            Card c = getTopCard(columnNumber);
+            boolean removeCard = false;
+            for (int i = 0; i < 4; i++) {
+                if (i != columnNumber) {
+                    if (columnHasCards(i)) {
+                        Card compare = getTopCard(i);
+                        if (compare.getSuit() == c.getSuit()) {
+                            if (compare.getValue() > c.getValue()) {
+                                removeCard = true;
                             }
                         }
                     }
                 }
             }
-        }
-
-        // Loop through the respective suit and remove the lower value
-        // Return prevents elimination of more than 1 value on a single click
-        while (diamonds >= 2){
-            for(int i = 0; i < 4; i++){
-                if (temp.get(i).suit == diamonds_compare.suit){
-                    for(int k = i + 1; k < 4; k++) {
-                        if (temp.get(k).suit == diamonds_compare.suit) {
-                            if (temp.get(i).value < temp.get(k).value && i == columnNumber) {
-                                removeCardFromCol(i);
-                                diamonds--;
-                                return;
-                            } else if(temp.get(i).value > temp.get(k).value && k == columnNumber){
-                                removeCardFromCol(k);
-                                diamonds--;
-                                return;
-                            }
-                        }
-                    }
-                }
+            if (removeCard) {
+                this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
             }
         }
-
-        // Loop through the respective suit and remove the lower value
-        // Return prevents elimination of more than 1 value on a single click
-        while (spades >= 2){
-            for(int i = 0; i < 4; i++){
-                if (temp.get(i).suit == spades_compare.suit){
-                    for(int k = i + 1; k < 4; k++) {
-                        if (temp.get(k).suit == spades_compare.suit) {
-                            if (temp.get(i).value < temp.get(k).value && i == columnNumber) {
-                                removeCardFromCol(i);
-                                spades--;
-                                return;
-                            } else if(temp.get(i).value > temp.get(k).value && k == columnNumber){
-                                removeCardFromCol(k);
-                                spades--;
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Loop through the respective suit and remove the lower value
-        // Return prevents elimination of more than 1 value on a single click
-        while (clubs >= 2){
-            for(int i = 0; i < 4; i++){
-                if (temp.get(i).suit == clubs_compare.suit){
-                    for(int k = i + 1; k < 4; k++) {
-                        if (temp.get(k).suit == clubs_compare.suit) {
-                            if (temp.get(i).value < temp.get(k).value && i == columnNumber) {
-                                removeCardFromCol(i);
-                                clubs--;
-                                return;
-                            } else if(temp.get(i).value > temp.get(k).value && k == columnNumber){
-                                removeCardFromCol(k);
-                                clubs--;
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
     }
 
     private boolean columnHasCards(int columnNumber) {
-        // check indicated column for number of cards; if no cards return false, otherwise return true
+        if(this.cols.get(columnNumber).size()>0){
+            return true;
+        }
         return false;
     }
 
@@ -186,18 +91,11 @@ public class Game {
     }
 
 
-    public void move(int columnFrom, int columnTo) 
-        
-        // Get which card to move and store it
+    public void move(int columnFrom, int columnTo) {
         Card cardToMove = getTopCard(columnFrom);
-        //remove the card from the original column
-        removeCardFromCol(columnFrom);
-        // add card to new column
-        addCardToCol(columnTo, cardToMove);
-
-       
+        this.removeCardFromCol(columnFrom);
+        this.addCardToCol(columnTo,cardToMove);
     }
-
 
     private void addCardToCol(int columnTo, Card cardToMove) {
         cols.get(columnTo).add(cardToMove);
