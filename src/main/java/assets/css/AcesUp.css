@@ -1,3 +1,23 @@
+header{
+margin: -8px;
+margin-top: -8px;
+margin-bottom: 5px;
+}
+
+.head{
+font-family: 'Russo One', sans-serif;
+background-color: black;
+margin: 0px;
+height: 8%;
+}
+
+.headerTitle{
+margin: 0px;
+padding-top: 10px;
+padding-left: 20px;
+color: white;
+}
+
 tr{
 width:500px;
 }
@@ -9,10 +29,31 @@ text-align:center;
 }
 
 .title{
+font-family: 'Russo One', sans-serif;
 font-weight: bold;
 }
 
 .cardLocation{
 width: 100px;
 background-color:#F0F0F0;
+}
+
+body{
+background-color: #f5f5f0;
+}
+
+.pageFooter{
+position: fixed;
+bottom: 0;
+width: 100%;
+height: 8%;
+margin-left: -8px;
+background-color: black;
+color: white;
+}
+
+.footerText{
+text-align: center;
+margin-top: 5px;
+margin-bottom: 5px;
 }
