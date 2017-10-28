@@ -154,3 +154,24 @@ margin-top: 5px;
 margin-bottom: 5px;
 font-family: 'Russo One', sans-serif;
 }
+
+.move{
+
+font-family: 'Russo One', sans-serif;
+text-align: right;
+border-radius: 5px;
+
+}
+#from_col{
+    font-family: 'Russo One', sans-serif;
+    border-radius: 5px;
+}
+#to_col{
+    font-family: 'Russo One', sans-serif;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+#moveButton{
+    font-family: 'Russo One', sans-serif;
+    border-radius: 5px;
+}
