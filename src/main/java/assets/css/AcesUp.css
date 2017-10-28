@@ -38,6 +38,74 @@ color: #F0F0F0;
 }
 
 .cardLocation{
+width: 100px;
+background-color:#F0F0F0;
+}
+
+.instructions{
+font-family: 'Russo One', sans-serif;
+width: 320px;
+height: 78%;
+padding: 10px;
+border-style: solid;
+border-width: 10px;
+border-color: #935b17;
+border-radius: 5px;
+background-color: #e2b156;
+
+margin-bottom: 10px;
+float: left;
+overflow: scroll;
+}
+
+.instructionHeader{
+font-family: 'Russo One', sans-serif;
+text-align: center;
+margin-top: 0px;
+font-size: 32px;
+}
+
+.goal{
+margin: 5px;
+text-align: justify;
+text-justify: inter-word;
+}
+
+.encouragement{
+text-align: center;
+font-size: 32px;
+}
+
+body{
+background: radial-gradient(green, green, black);
+}
+
+#dealButton {
+font-family: 'Russo One', sans-serif;
+margin: 10px;
+width: 150px;
+height: 210px;
+background-color: #e8ede9;
+border-style: solid;
+border-width: 1px;
+border-color: #313332;
+border-radius: 7px;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 32px;
+position: absolute;
+right: 2%;
+top: 10%;
+
+}
+
+#dealButton:hover{
+color: red;
+cursor: pointer;
+}
+
 width: 200px;
 background-color: #F0F0F0;
 font-family: 'Lato', sans-serif;
