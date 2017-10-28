@@ -38,7 +38,7 @@ color: #F0F0F0;
 }
 
 .cardLocation{
-width: 100px;
+width: 200px;
 background-color:#F0F0F0;
 }
 
@@ -96,7 +96,7 @@ text-decoration: none;
 display: inline-block;
 font-size: 32px;
 position: absolute;
-right: 2%;
+right: 0%;
 top: 10%;
 
 }
