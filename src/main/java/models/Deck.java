@@ -8,9 +8,6 @@ public class Deck {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
-
-
     public void buildDeck() {
         for(int i = 2; i < 15; i++){
             deck.add(new Card(i,Suit.Clubs));
@@ -33,7 +30,7 @@ public class Deck {
     }
 
     //customDeal to setup game for testing purposes
-    public void customDeal(int c1, int c2, int c3, int c4) {
+    /*public void customDeal(int c1, int c2, int c3, int c4) {
         cols.get(0).add(deck.get(c1));
         deck.remove(c1);
         cols.get(1).add(deck.get(c2));
@@ -42,5 +39,5 @@ public class Deck {
         deck.remove(c3);
         cols.get(3).add(deck.get(c4));
         deck.remove(c4);
-    }
+    }*/
 }
