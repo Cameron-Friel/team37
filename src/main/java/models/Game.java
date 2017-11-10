@@ -39,9 +39,6 @@ public class Game {
         for(int i = 0; i < 4; i++){
             gameBoard.cols.get(i).add(deck.get(deck.size()-1));
             deck.remove(deck.size()-1);
-            System.out.println("HERRO");
-            //System.out.println(gameBoard);
-            //System.out.println(gameBoard.cols);
         }
     }
 

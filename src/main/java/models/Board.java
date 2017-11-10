@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Board {
 
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
+    //board data members
+
+    public java.util.List<java.util.List<Card>> cols = new ArrayList<>(); //array to hold the cards on the board
 
     public Board()
     {
