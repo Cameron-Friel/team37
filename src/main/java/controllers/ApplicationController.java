@@ -30,19 +30,19 @@ public class ApplicationController {
     public Result index() {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
-    
+
     public Result gameGet(){
         Game g = new Game();
-        g.buildDeck();
-        g.shuffle();
-        g.dealFour();
+        g.d.buildDeck();
+        g.d.shuffle();
+        g.d.dealFour(g.cols);
 
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
-            g.dealFour();
+            g.d.dealFour(g.cols);
         }
         return Results.json().render(g);
     }
