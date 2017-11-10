@@ -35,25 +35,30 @@ public class ApplicationController {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
-        g.dealFour();
+        g.dealFour(g.gameBoard);
+
+        System.out.println(g.gameBoard);
+        System.out.println(g.gameBoard.cols);
 
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
-            g.dealFour();
+            g.dealFour(g.gameBoard);
+            //System.out.println("fdsjk");
+            //System.out.println(g.gameBoard);
         }
         return Results.json().render(g);
     }
 
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
-        g.remove(colNumber);
+        g.gameBoard.remove(colNumber);
         return Results.json().render(g);
     }
 
     public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
-        g.move(colFrom,colTo);
+        g.gameBoard.move(colFrom,colTo);
         return Results.json().render(g);
     }
 
