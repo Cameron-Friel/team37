@@ -30,15 +30,12 @@ public class ApplicationController {
     public Result index() {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
-    
+
     public Result gameGet(){
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
         g.dealFour(g.gameBoard);
-
-        System.out.println(g.gameBoard);
-        System.out.println(g.gameBoard.cols);
 
         return Results.json().render(g);
     }
@@ -46,8 +43,6 @@ public class ApplicationController {
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
             g.dealFour(g.gameBoard);
-            //System.out.println("fdsjk");
-            //System.out.println(g.gameBoard);
         }
         return Results.json().render(g);
     }
