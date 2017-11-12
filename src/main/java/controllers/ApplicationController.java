@@ -33,16 +33,16 @@ public class ApplicationController {
 
     public Result gameGet(){
         Game g = new Game();
-        g.buildDeck();
-        g.shuffle();
-        g.dealFour(g.gameBoard);
+        g.d.buildDeck();
+        g.d.shuffle();
+        g.d.dealFour(g.gameBoard);
 
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
-            g.dealFour(g.gameBoard);
+            g.d.dealFour(g.gameBoard);
         }
         return Results.json().render(g);
     }
