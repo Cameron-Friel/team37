@@ -51,9 +51,12 @@ public class Board {
 
 
     public void move(int columnFrom, int columnTo) {
-        Card cardToMove = getTopCard(columnFrom);
-        this.removeCardFromCol(columnFrom);
-        this.addCardToCol(columnTo,cardToMove);
+        // Check if the column is empty and the value of the card being moved is an ace (has the value of 14)
+        if((columnHasCards(columnTo) == false) && (getTopCard(columnFrom).value == 14)) {
+            Card cardToMove = getTopCard(columnFrom);
+            this.removeCardFromCol(columnFrom);
+            this.addCardToCol(columnTo, cardToMove);
+        }
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
