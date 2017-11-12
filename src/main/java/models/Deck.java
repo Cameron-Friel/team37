@@ -22,9 +22,9 @@ public class Deck {
         Collections.shuffle(deck, new Random(seed));
     }
 
-    public void dealFour(java.util.list<card>cols) {
+    public void dealFour(Board gameBoard) {
         for(int i = 0; i < 4; i++){
-            cols.get(i).add(deck.get(deck.size()-1));
+            gameBoard.cols.get(i).add(deck.get(deck.size()-1));
             deck.remove(deck.size()-1);
         }
     }
