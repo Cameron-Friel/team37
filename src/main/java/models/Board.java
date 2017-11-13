@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 
 public class Board {
 
@@ -8,12 +10,15 @@ public class Board {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>(); //array to hold the cards on the board
 
+    public int score;
+
     public Board()
     {
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
+        score = 0;
     }
 
     public void remove(int columnNumber) {
@@ -34,6 +39,11 @@ public class Board {
             }
             if (removeCard) {
                 this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
+                this.score++;
+                if(this.score >= 48)
+                {
+                    JOptionPane.showMessageDialog(null, "YOU WIN!");
+                }
             }
         }
     }
