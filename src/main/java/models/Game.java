@@ -20,5 +20,6 @@ public class Game {
     public Game(){
         d = new Deck();
         gameBoard = new Board();
+
     }
 }
