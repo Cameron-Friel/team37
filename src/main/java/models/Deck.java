@@ -17,6 +17,17 @@ public class Deck {
         }
     }
 
+    public void buildSpanishDeck() {
+        for (int i = 2; i < 14; i++)
+        {
+            deck.add(new Card(i,Suit.Bastos));
+            deck.add(new Card(i,Suit.Oros));
+            deck.add(new Card(i,Suit.Copas));
+            deck.add(new Card(i,Suit.Espadas));
+
+        }
+    }
+
     public void shuffle() {
         long seed = System.nanoTime();
         Collections.shuffle(deck, new Random(seed));
