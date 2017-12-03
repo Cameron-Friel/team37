@@ -14,6 +14,8 @@
 <body>
 
 <div class="instructions">
+    <p class = "goal"> Click here to change between the regular and spanish versions of Aces UP!: </p>
+    <input class = "game-button" type = 'button' value = 'Change to Spanish Version'>
     <p class="instructionHeader">Instructions:</p>
     <p class="goal">The goal of Aces UP! is to remove all cards from the columns until only the four aces are remaining, with one ace in each column.
     This is done by removing the lowest value card from the top four cards, but this move can only be done if there are two or more cards
@@ -126,6 +128,8 @@
 <script>
 
 var game;
+var score = 0;
+var gameMode = 0; //start game mode at regular version
 
 function display(game) {
 console.log(game);
@@ -150,7 +154,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 }
 
 // Calls ApplicationController.gameGet()
-$.getJSON("http://localhost:8080/game", function( data ) {
+$.getJSON("http://localhost:8080/game", {send: gameMode}, function( data ) {
 display(data);
 game = data;
 });
@@ -177,6 +181,8 @@ url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
+score += 1;
+console.log(score);
 display(data);},
 contentType:"application/json; charset=utf-8",
 dataType:"json",
@@ -213,10 +219,33 @@ $.ajax({
 });
 });
 
+$('.game-button').click(function() //create new Version of the game
+{
+   if (gameMode == 0) //change to spanish version
+  {
+    gameMode = 1;
+
+    $(this).val('Change to Regular Version');
+   }
+   else //change to regular version
+   {
+    gameMode = 0;
+
+    $(this).val('Change to Spanish Version');
+   }
+
+   //render new game
+
+   $.getJSON("http://localhost:8080/game", {send: gameMode}, function( data ) {
+        display(data);
+        game = data;
+    });
+
+});
 
 </script>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
 

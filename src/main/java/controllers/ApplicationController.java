@@ -31,8 +31,8 @@ public class ApplicationController {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
 
-    public Result gameGet(){
-        Game g = new Game();
+    public Result gameGet(@PathParam("send") int gameMode) {
+        Game g = new Game(gameMode);
         g.d.buildDeck();
         g.d.shuffle();
         g.d.dealFour(g.gameBoard);
