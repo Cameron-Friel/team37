@@ -22,4 +22,18 @@ public class Game {
         gameBoard = new Board();
 
     }
+
+    public Game(int gameMode) //constructor takes in argument for which deck to use
+    {
+        if (gameMode == 0) //use regular deck
+        {
+            d = new Deck();
+            gameBoard = new Board();
+        }
+        else //use spanish deck
+        {
+            d = new Deck();
+            gameBoard = new Board();
+        }
+    }
 }
