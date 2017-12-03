@@ -10,15 +10,15 @@ public class testBoard {
     @Test
     public void testBoardArray(){
         Board b = new Board();
-        assertNotNull(b.cards);
+        assertNotNull(b.cols);
     }
-
+/*
     @Test
     public void testRemoveFunction(){
         Board b = new Board();
-        Card c = new Card(9, suit.Spades);
-        b.add(c)
-        g.remove(0);
-        assertEquals(0, b.cards.size());
-    }
+        Card c = new Card(9, Suit.Spades);
+        b.addCardToCol(c);
+        b.remove(0);
+        assertEquals(0, b.columnHasCards(0));
+    }*/
 }
